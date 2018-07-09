@@ -20,19 +20,26 @@ describe "Visitor" do
 
       expect(page).to have_content("Average Age: #{avg_age}")
     end
+    it "see a list of the space missions' in alphabetical order for each astronaut" do
+      astronaut1 = Astronaut.create(name: "Neil Armstrong", age: 32, job: "commander")
+      astronaut2 = Astronaut.create(name: "Buzz Aldren", age: 30, job: "commander")
+      mission1 = astronaut1.space_missions.create(title:"Apollo 13", trip_length: 500)
+      mission2 = astronaut1.space_missions.create(title:"Capricorn 4", trip_length: 400)
+      mission3 = astronaut1.space_missions.create(title:"Gemini 7", trip_length: 400)
+      mission4 = astronaut1.space_missions.create(title:"Apollo 11", trip_length: 500)
+      mission5 = astronaut1.space_missions.create(title:"Capricorn 3", trip_length: 400)
+      mission6 = astronaut1.space_missions.create(title:"Gemini 5", trip_length: 400)
+      
+      visit astronauts_path
+
+      expect(page).to have_content("Missions: #{mission1.title}, #{mission2.title}, #{mission3.title}")
+      expect(page).to have_content("Missions: #{mission4.title}, #{mission5.title}, #{mission6.title}")
+    end
   end
 end
 
 =begin
 
-```
-
-```
-As a visitor,
-When I visit '/astronauts'
-I see the average age of all astronauts.
-(e.g. "Average Age: 34")
-```
 
 ```
 As a visitor,
