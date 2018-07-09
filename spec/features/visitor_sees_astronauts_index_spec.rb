@@ -14,7 +14,7 @@ describe "Visitor" do
   end
 end
 
-=begin```
+=begin
 As a visitor,
 When I visit '/astronauts'
 I see a list of astronauts with the following info:
